@@ -19,12 +19,10 @@ public final class DisplayAppOptions {
     /**
      * Package private constructor solely for the purpose of testing
      *
-     * @param showUsage help flag
      * @param size display size
      * @param text display text
      */
-    DisplayAppOptions(boolean showUsage, int size, String text) {
-        this.showUsage = showUsage;
+    DisplayAppOptions(int size, String text) {
         this.size = size;
         this.text = text;
     }

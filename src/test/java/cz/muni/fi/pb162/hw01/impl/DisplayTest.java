@@ -13,7 +13,6 @@ import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 public class DisplayTest {
 
-    private static final String EMPTY_LINE = " ".repeat(3);
     private static Factory factory;
     private static DisplayStringifier stringifier;
 
@@ -28,10 +27,7 @@ public class DisplayTest {
     public void shouldCreateEmptyDisplay() {
         var display = factory.display(1);
 
-        assertSoftly(softly -> {
-            assertDisplayLines(softly, display, EMPTY_LINE, EMPTY_LINE, EMPTY_LINE);
-            assertDisplayString(softly, display, EMPTY_LINE, EMPTY_LINE, EMPTY_LINE);
-        });
+        assertDisplay(display, Outputs.TXT_);
     }
 
 
@@ -41,16 +37,7 @@ public class DisplayTest {
 
         display.set("0123456789E");
 
-        var expected = """
-                 _     _  _     _     _  _  _  _\s
-                | |  | _| _||_||_ |_   ||_||_||_\s
-                |_|  ||_  _|  | _||_|  ||_|  ||_\s
-                """;
-
-        assertSoftly(softly -> {
-            assertDisplayString(softly, display, expected);
-            assertDisplayLines(softly, display, expected.split(System.lineSeparator()));
-        });
+        assertDisplay(display, Outputs.TXT_0123456789E);
     }
 
     @Test
@@ -59,16 +46,7 @@ public class DisplayTest {
 
         display.set("0123456789E");
 
-        var expected = """
-                 _     _  _\s    
-                | |  | _| _|
-                |_|  ||_  _|
-                """;
-
-        assertSoftly(softly -> {
-            assertDisplayString(softly, display, expected);
-            assertDisplayLines(softly, display, expected.split(System.lineSeparator()));
-        });
+        assertDisplay(display, Outputs.TXT_0123);
     }
 
     @Test
@@ -77,16 +55,7 @@ public class DisplayTest {
 
         display.set("01k2");
 
-        var expected = """ 
-                 _     _  _\s
-                | |  ||_  _|
-                |_|  ||_ |_\s
-                """;
-
-        assertSoftly(softly -> {
-            assertDisplayString(softly, display, expected);
-            assertDisplayLines(softly, display, expected.split(System.lineSeparator()));
-        });
+        assertDisplay(display, Outputs.TXT_01E2);
     }
 
     @Test
@@ -95,16 +64,7 @@ public class DisplayTest {
 
         display.set("8012");
 
-        var expected = """
-                 _  _     _      \s
-                |_|| |  | _|     \s
-                |_||_|  ||_      \s
-                """;
-
-        assertSoftly(softly -> {
-            assertDisplayString(softly, display, expected);
-            assertDisplayLines(softly, display, expected.split(System.lineSeparator()));
-        });
+        assertDisplay(display, Outputs.TXT_8012_);
     }
 
     @Test
@@ -113,16 +73,7 @@ public class DisplayTest {
 
         display.set(1,"E");
 
-        var expected = """
-                \s   _   \s    
-                \s  |_   \s
-                \s  |_   \s
-                """;
-
-        assertSoftly(softly -> {
-            assertDisplayString(softly, display, expected);
-            assertDisplayLines(softly, display, expected.split(System.lineSeparator()));
-        });
+        assertDisplay(display, Outputs.TXT__E_);
     }
 
     @Test
@@ -132,25 +83,7 @@ public class DisplayTest {
         display.set("0123456789E");
         display.set(4,"3210");
 
-        var expected = """
-                 _     _  _  _  _     _      \s
-                | |  | _| _| _| _|  || |     \s
-                |_|  ||_  _| _||_   ||_|     \s
-                """;
-
-        assertSoftly(softly -> {
-            assertDisplayString(softly, display, expected);
-            assertDisplayLines(softly, display, expected.split(System.lineSeparator()));
-        });
-    }
-
-    private void assertDisplayLines(SoftAssertions assertions, Display display, String... expected) {
-        var actual = stringifier.asLines(display);
-
-        assertions
-                .assertThat(actual)
-                .describedAs("String lines of display")
-                .containsExactly(expected);
+        assertDisplay(display, Outputs.TXT_01233210_);
     }
 
     @Test
@@ -160,7 +93,7 @@ public class DisplayTest {
         display.set("0123456789E");
         display.clear();
 
-        var expectedLine = EMPTY_LINE.repeat(11);
+        var expectedLine = Outputs.EMPTY_LINE.repeat(11);
 
         assertSoftly(softly -> {
             assertDisplayString(softly, display, expectedLine, expectedLine, expectedLine);
@@ -176,16 +109,36 @@ public class DisplayTest {
         display.clear(3);
         display.clear(7);
 
-        var expected = """
-                 _     _        _        _  _  _\s
-                | |  | _|   |_||_ |_    |_||_||_\s
-                |_|  ||_      | _||_|   |_|  ||_\s
-                """;
+        assertDisplay(display, Outputs.TXT_012_456_89E);
+    }
 
+
+    private void assertDisplay(Display display, String expected) {
         assertSoftly(softly -> {
             assertDisplayString(softly, display, expected);
-            assertDisplayLines(softly, display, expected.split(System.lineSeparator()));
+            assertDisplayLines(softly, display, expected);
         });
+    }
+
+    private void assertDisplay(Display display, String... lines) {
+        assertSoftly(softly -> {
+            assertDisplayString(softly, display, lines);
+            assertDisplayLines(softly, display, lines);
+        });
+    }
+
+    private void assertDisplayLines(SoftAssertions assertions, Display display, String expected) {
+        var lines = expected.split(System.lineSeparator());
+        assertDisplayLines(assertions, display, lines);
+    }
+
+    private void assertDisplayLines(SoftAssertions assertions, Display display, String... lines) {
+        var actual = stringifier.asLines(display);
+
+        assertions
+                .assertThat(actual)
+                .describedAs("String lines of display")
+                .containsExactly(lines);
     }
 
     private void assertDisplayString(SoftAssertions assertions, Display display, String... lines) {
