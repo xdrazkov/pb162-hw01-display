@@ -55,7 +55,7 @@ $ mvn clean install -Dcheckstyle.skip
 You can consult your seminar teacher to help you set the ```checkstyle.skip``` property in your IDE (or just google it).
 
 ### Submitting the assignment
-The procedure to submit your solution may differ based on your seminar group. However, it should be generally OK to submit ```target/homework01-2022-1.0-SNAPSHOT-sources.jar``` to the homework vault.
+The procedure to submit your solution may differ based on your seminar group. However, it should be generally OK to submit ```target/homework01-2023-1.0-SNAPSHOT-sources.jar``` to the homework vault.
 
 Assignment Description
 -------------
