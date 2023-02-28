@@ -54,8 +54,23 @@ $ mvn clean install -Dcheckstyle.skip
 
 You can consult your seminar teacher to help you set the ```checkstyle.skip``` property in your IDE (or just google it).
 
-### Submitting the assignment
-The procedure to submit your solution may differ based on your seminar group. However, it should be generally OK to submit ```target/homework01-2023-1.0-SNAPSHOT-sources.jar``` to the homework vault.
+### Submitting the Assignment
+Follow instructions of your tutor because the procedure to submit your solution may differ based on your seminar group. However, there are two ways of submittion in general:
+* Fork the project, develop your code in a development branch, and finally ask for the merge.
+* Submit ```target/homework01-2023-1.0-SNAPSHOT-sources.jar``` to the homework vault.
+
+### Minimal Requirements for Acceptance
+- Fulfilling all Java course standards (documentation, conventions, etc.)
+- Proper code decomposition
+  - Split your code into multiple classes
+  - Organize your classes in packages
+- Single responsibility
+  - Class should ideally have a single purpose
+- Extendable code
+  - Future support for different symbols...
+  - Future support for [different display types](https://en.wikiversity.org/wiki/Segment_display), e.g., three-segment displays.
+- All provided tests must pass
+
 
 Assignment Description
 -------------
@@ -93,20 +108,8 @@ Bellow is a template of symbols supported by our application.
 The *error symbol* is displayed in case of an unsupported character. See the javadoc for more information.  
 **Note: Make sure that the formatting of you output is exactly the same as described**
 
-### Implementation Requirements
-Your implementation focus on fulfilling the following
-
-- Proper code decomposition
-  - Split your code into multiple classes
-  - Organize your classes in packages
-- Single responsibility
-  - Class should ideally have a single purpose
-- Extendable code
-  - Future support for different symbols...
-  - Future support for different display type
-- All provided tests must pass
-
-While adhering to these, you are required to finish the implementation
+### Implementation Notes
+To achieve proper decomposition, you are required to finish the implementation of
 
 - `DisplayApp` while keeping the command line interface.
 - `Factory` which provides [factory methods](https://en.wikipedia.org/wiki/Factory_method_pattern) for your implementations
