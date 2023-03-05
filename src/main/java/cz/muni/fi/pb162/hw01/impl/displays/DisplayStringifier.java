@@ -1,6 +1,5 @@
 package cz.muni.fi.pb162.hw01.impl.displays;
 
-import java.util.StringJoiner;
 
 /**
  * Converts the contents of given display to {@link String}
