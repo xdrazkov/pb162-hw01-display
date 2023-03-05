@@ -3,8 +3,9 @@ image: maven:3-openjdk-17-slim
 build:
   script:
     - mvn clean install -B
-  reports:
-    junit: target/surefire-reports/test/**/TEST-*.xml
+  artifacts:
+    reports:
+      junit: target/surefire-reports/test/**/TEST-*.xml
   tags:
     - shared-fi
 
