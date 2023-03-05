@@ -15,10 +15,10 @@ public final class AppRunner {
      * @param args command line arguments of the application
      */
     public static void main(String[] args) {
-        var options = new DisplayAppOptions();
-        var cli = new CommandLine("display", options);
-        var app = new DisplayApp();
-        var status = cli.parseArguments(args);
+        DisplayAppOptions options = new DisplayAppOptions();
+        CommandLine cli = new CommandLine("display", options);
+        DisplayApp app = new DisplayApp();
+        int status = cli.parseArguments(args);
 
         exitOnError(status);
 
