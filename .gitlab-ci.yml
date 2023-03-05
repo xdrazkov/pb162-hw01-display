@@ -5,7 +5,7 @@ build:
     - mvn clean install -B
   artifacts:
     reports:
-      junit: target/surefire-reports/test/**/TEST-*.xml
+      junit: target/surefire-reports/**/TEST-*.xml
   tags:
     - shared-fi
 
