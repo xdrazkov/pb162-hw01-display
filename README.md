@@ -8,6 +8,7 @@ Homework assignment no. 1, Segment Display
 ## CHANGELOG
 
 * 6.3.2023: Initial version
+* 6.3.2023: Fixed problems with line separators in tests 
 
 General information
 -------------------
