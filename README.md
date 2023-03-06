@@ -3,7 +3,7 @@ Homework assignment no. 1, Segment Display
 
 **Publication date:**  March 6, 2023
 
-**Submission deadline:** March 26, 2023
+**Submission deadline:** March 20, 2023
 
 ## CHANGELOG
 
