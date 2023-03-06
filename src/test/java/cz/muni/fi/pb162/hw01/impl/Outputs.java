@@ -19,7 +19,7 @@ public final class Outputs {
                 """;
 
     public static final String TXT_0123 = """
-                 _     _  _\s    
+                 _     _  _\s
                 | |  | _| _|
                 |_|  ||_  _|
                 """;
@@ -30,19 +30,19 @@ public final class Outputs {
                 |_|  ||_ |_\s
                 """;
 
-    public static final String TXT_8012_ = """
+    public static final String TXT_8012__ = """
                  _  _     _      \s
                 |_|| |  | _|     \s
                 |_||_|  ||_      \s
                 """;
 
     public static final String TXT__E_ = """
-                \s   _   \s    
+                \s   _   \s
                 \s  |_   \s
                 \s  |_   \s
                 """;
 
-    public static final String TXT_01233210_ = """
+    public static final String TXT_01233210__ = """
                  _     _  _  _  _     _      \s
                 | |  | _| _| _| _|  || |     \s
                 |_|  ||_  _| _||_   ||_|     \s
@@ -55,5 +55,16 @@ public final class Outputs {
                 """;
     private Outputs() {
         // intentionally private
+    }
+
+    public static String removeSuffixNewLine(String string) {
+        if (string.endsWith(System.lineSeparator())) {
+            return string.substring(0, string.length() - System.lineSeparator().length());
+        }
+        return string;
+    }
+
+    public static String ensurePlatformLines(String string) {
+        return string.replace("\n", System.lineSeparator());
     }
 }

@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+import static cz.muni.fi.pb162.hw01.impl.Outputs.ensurePlatformLines;
+import static cz.muni.fi.pb162.hw01.impl.Outputs.removeSuffixNewLine;
 import static java.util.stream.Collectors.joining;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
@@ -64,7 +66,7 @@ public class DisplayTest {
 
         display.set("8012");
 
-        assertDisplay(display, Outputs.TXT_8012_);
+        assertDisplay(display, Outputs.TXT_8012__);
     }
 
     @Test
@@ -83,7 +85,7 @@ public class DisplayTest {
         display.set("0123456789E");
         display.set(4,"3210");
 
-        assertDisplay(display, Outputs.TXT_01233210_);
+        assertDisplay(display, Outputs.TXT_01233210__);
     }
 
     @Test
@@ -95,10 +97,7 @@ public class DisplayTest {
 
         var expectedLine = Outputs.EMPTY_LINE.repeat(11);
 
-        assertSoftly(softly -> {
-            assertDisplayString(softly, display, expectedLine, expectedLine, expectedLine);
-            assertDisplayLines(softly, display, expectedLine, expectedLine, expectedLine);
-        });
+        assertDisplay(display, expectedLine, expectedLine, expectedLine);
     }
 
     @Test
@@ -114,9 +113,10 @@ public class DisplayTest {
 
 
     private void assertDisplay(Display display, String expected) {
+        var platformExpected = ensurePlatformLines(expected);
         assertSoftly(softly -> {
-            assertDisplayString(softly, display, expected);
-            assertDisplayLines(softly, display, expected);
+            assertDisplayString(softly, display, platformExpected);
+            assertDisplayLines(softly, display, platformExpected);
         });
     }
 
@@ -156,10 +156,5 @@ public class DisplayTest {
                 .isEqualTo(removeSuffixNewLine(expected));
     }
 
-    private static String removeSuffixNewLine(String string) {
-        if (string.endsWith(System.lineSeparator())) {
-            return string.substring(0, string.length() - 1);
-        }
-        return string;
-    }
+
 }

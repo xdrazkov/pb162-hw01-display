@@ -4,6 +4,8 @@ import com.github.stefanbirkner.systemlambda.SystemLambda;
 import cz.muni.fi.pb162.hw01.impl.Outputs;
 import org.junit.jupiter.api.Test;
 
+import static cz.muni.fi.pb162.hw01.impl.Outputs.ensurePlatformLines;
+import static cz.muni.fi.pb162.hw01.impl.Outputs.removeSuffixNewLine;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DisplayAppTest {
@@ -32,7 +34,7 @@ public class DisplayAppTest {
 
     @Test
     public void shouldHandleShorterInput() throws Exception {
-        assertApplicationRun(6, "8012", Outputs.TXT_8012_);
+        assertApplicationRun(6, "8012", Outputs.TXT_8012__);
     }
 
     private static String run(DisplayAppOptions options) throws Exception {
@@ -41,14 +43,7 @@ public class DisplayAppTest {
 
     private void assertApplicationRun(int size, String text, String expected) throws Exception {
         var actual = run(new DisplayAppOptions(size, text));
-        assertThat(removeSuffixNewLine(actual)).isEqualTo(removeSuffixNewLine(expected));
+        var platformExpected = ensurePlatformLines(expected);
+        assertThat(removeSuffixNewLine(actual)).isEqualTo(removeSuffixNewLine(platformExpected));
     }
-
-    private static String removeSuffixNewLine(String string) {
-        if (string.endsWith(System.lineSeparator())) {
-            return string.substring(0, string.length() - 1);
-        }
-        return string;
-    }
-
 }
