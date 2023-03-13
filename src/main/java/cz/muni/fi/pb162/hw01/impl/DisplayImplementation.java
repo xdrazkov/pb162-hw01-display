@@ -30,20 +30,23 @@ public class DisplayImplementation implements cz.muni.fi.pb162.hw01.impl.display
             if (!inRange(i)) {
                 break;
             }
-            characters[i] = DisplayableCharacter.getChar(text.charAt(i));
+            characters[i] = DisplayableCharacter.getChar(text.charAt(i - pos));
+        }
+        for (int i = pos + text.length(); i < text.length(); i++){
+            characters[i] = DisplayableCharacter.Empty;
         }
     }
 
     @Override
     public void clear() {
-        clear(0);
+        for (int i = 0; i < size; i++){
+            clear(i);
+        }
     }
 
     @Override
     public void clear(int pos) {
-        for (int i = pos; i < size; i++){
-            characters[i] = DisplayableCharacter.Empty;
-        }
+        characters[pos] = DisplayableCharacter.Empty;
     }
 
     private boolean inRange(int pos) {
