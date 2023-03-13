@@ -17,7 +17,7 @@ public final class Factory {
      * @return display instance
      */
     public Display display(int size) {
-        throw new UnsupportedOperationException();
+        return new DisplayImplementation(size);
     }
 
     /**
@@ -27,6 +27,6 @@ public final class Factory {
      * @return printer instance
      */
     public DisplayStringifier stringifier() {
-        throw new UnsupportedOperationException();
+        return new cz.muni.fi.pb162.hw01.impl.DisplayStringifier();
     }
 }

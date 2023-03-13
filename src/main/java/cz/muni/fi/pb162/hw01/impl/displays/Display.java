@@ -1,5 +1,7 @@
 package cz.muni.fi.pb162.hw01.impl.displays;
 
+import cz.muni.fi.pb162.hw01.impl.DisplayableCharacter;
+
 /**
  * Represents a virtual display
  */
@@ -35,4 +37,10 @@ public interface Display {
      * @param pos position to be cleared
      */
     void clear(int pos);
+
+    /**
+     * Gets characters to print
+     * @return characters to print
+     */
+    DisplayableCharacter[] getCharacters();
 }

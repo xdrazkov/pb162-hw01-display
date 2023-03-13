@@ -1,6 +1,8 @@
 package cz.muni.fi.pb162.hw01.impl.app;
 
 import cz.muni.fi.pb162.hw01.cmd.Application;
+import cz.muni.fi.pb162.hw01.impl.DisplayImplementation;
+import cz.muni.fi.pb162.hw01.impl.DisplayStringifier;
 
 
 /**
@@ -15,7 +17,12 @@ public class DisplayApp implements Application<DisplayAppOptions> {
      * @return exit status code
      */
     public int run(DisplayAppOptions options) {
-        // TODO: replace body with your implementation
-        throw new UnsupportedOperationException();
+        DisplayImplementation display = new DisplayImplementation(options.getSize());
+        DisplayStringifier stringifier = new DisplayStringifier();
+
+        display.set(options.getText());
+        String result = stringifier.asString(display);
+        System.out.println(result);
+        return 0;
     }
 }
