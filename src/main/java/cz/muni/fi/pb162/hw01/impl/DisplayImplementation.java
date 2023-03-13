@@ -32,7 +32,7 @@ public class DisplayImplementation implements cz.muni.fi.pb162.hw01.impl.display
             }
             characters[i] = DisplayableCharacter.getChar(text.charAt(i - pos));
         }
-        for (int i = pos + text.length(); i < text.length(); i++){
+        for (int i = pos + text.length(); i < size; i++){
             characters[i] = DisplayableCharacter.Empty;
         }
     }
