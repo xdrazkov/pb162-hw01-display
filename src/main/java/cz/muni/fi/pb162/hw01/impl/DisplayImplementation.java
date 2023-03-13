@@ -2,7 +2,6 @@ package cz.muni.fi.pb162.hw01.impl;
 
 public class DisplayImplementation implements cz.muni.fi.pb162.hw01.impl.displays.Display {
     private int size;
-    private int currentSize = 0;
 
     private DisplayableCharacter[] characters;
 
@@ -31,8 +30,7 @@ public class DisplayImplementation implements cz.muni.fi.pb162.hw01.impl.display
             if (!inRange(i)) {
                 break;
             }
-            characters[currentSize] = DisplayableCharacter.getChar(text.charAt(i));
-            currentSize += 1;
+            characters[i] = DisplayableCharacter.getChar(text.charAt(i));
         }
     }
 
@@ -43,7 +41,6 @@ public class DisplayImplementation implements cz.muni.fi.pb162.hw01.impl.display
 
     @Override
     public void clear(int pos) {
-        currentSize = pos;
         for (int i = pos; i < size; i++){
             characters[i] = DisplayableCharacter.Empty;
         }
