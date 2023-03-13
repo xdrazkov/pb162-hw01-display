@@ -26,7 +26,7 @@ public class DisplayImplementation implements cz.muni.fi.pb162.hw01.impl.display
 
     @Override
     public void set(int pos, String text) {
-        for (int i = pos; i < text.length(); i++){
+        for (int i = pos; i - pos < text.length(); i++){
             if (!inRange(i)) {
                 break;
             }
