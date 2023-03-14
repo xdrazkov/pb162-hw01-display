@@ -16,7 +16,6 @@ public class DisplayImplementation implements cz.muni.fi.pb162.hw01.impl.display
         for (int i = 0; i < size; i++){
             characters[i] = DisplayableCharacter.Empty;
         }
-        clear();
     }
 
     @Override

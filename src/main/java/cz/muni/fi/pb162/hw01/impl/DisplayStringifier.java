@@ -30,6 +30,6 @@ public class DisplayStringifier implements cz.muni.fi.pb162.hw01.impl.displays.D
         if (!canStringify(display)) {
             return null;
         }
-        return String.join("\n", asLines(display));
+        return String.join(System.lineSeparator(), asLines(display));
     }
 }
