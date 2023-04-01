@@ -30,5 +30,10 @@ public interface DisplayStringifier {
      */
     // TODO: this method can have a default implementation
     // TODO: https://www.baeldung.com/java-static-default-methods
-    String asString(Display display);
+    default String asString(Display display) {
+        if (!canStringify(display)) {
+            return null;
+        }
+        return String.join(System.lineSeparator(), asLines(display));
+    }
 }

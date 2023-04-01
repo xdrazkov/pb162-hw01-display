@@ -27,6 +27,6 @@ public final class Factory {
      * @return printer instance
      */
     public DisplayStringifier stringifier() {
-        return new cz.muni.fi.pb162.hw01.impl.DisplayStringifier();
+        return new SevenDisplayStringifier();
     }
 }

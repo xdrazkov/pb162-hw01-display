@@ -23,6 +23,22 @@ public enum DisplayableCharacter {
         toLines.put(Error, new String[]{" _ ", "|_ ", "|_ "});
     }
 
+    private static HashMap<Character, DisplayableCharacter> charMap = new HashMap<>();
+    static {
+        charMap.put(' ', Empty);
+        charMap.put('0', Number_0);
+        charMap.put('1', Number_1);
+        charMap.put('2', Number_2);
+        charMap.put('3', Number_3);
+        charMap.put('4', Number_4);
+        charMap.put('5', Number_5);
+        charMap.put('6', Number_6);
+        charMap.put('7', Number_7);
+        charMap.put('8', Number_8);
+        charMap.put('9', Number_9);
+    }
+
+
     /**
      * Get DisplayableCharacter representation of the input character
      *
@@ -30,32 +46,10 @@ public enum DisplayableCharacter {
      * @return DisplayableCharacter representation of the character
      */
     public static DisplayableCharacter getChar(char character) {
-        switch (character) {
-            case ' ':
-                return Empty;
-            case '0':
-                return Number_0;
-            case '1':
-                return Number_1;
-            case '2':
-                return Number_2;
-            case '3':
-                return Number_3;
-            case '4':
-                return Number_4;
-            case '5':
-                return Number_5;
-            case '6':
-                return Number_6;
-            case '7':
-                return Number_7;
-            case '8':
-                return Number_8;
-            case '9':
-                return Number_9;
-            default:
-                return Error;
+        if (charMap.containsKey(character)) {
+            return charMap.get(character);
         }
+        return Error;
     }
 
     public String[] getLines(){

@@ -1,8 +1,9 @@
 package cz.muni.fi.pb162.hw01.impl;
 
 import cz.muni.fi.pb162.hw01.impl.displays.Display;
+import cz.muni.fi.pb162.hw01.impl.displays.DisplayStringifier;
 
-public class DisplayStringifier implements cz.muni.fi.pb162.hw01.impl.displays.DisplayStringifier {
+public class SevenDisplayStringifier implements DisplayStringifier {
     @Override
     public boolean canStringify(Display display) {
         return true;
@@ -23,13 +24,5 @@ public class DisplayStringifier implements cz.muni.fi.pb162.hw01.impl.displays.D
             line3.append(lines[2]);
         }
         return new String[]{line1.toString(), line2.toString(), line3.toString()};
-    }
-
-    @Override
-    public String asString(Display display) {
-        if (!canStringify(display)) {
-            return null;
-        }
-        return String.join(System.lineSeparator(), asLines(display));
     }
 }

@@ -1,6 +1,8 @@
 package cz.muni.fi.pb162.hw01.impl;
 
-public class DisplayImplementation implements cz.muni.fi.pb162.hw01.impl.displays.Display {
+import cz.muni.fi.pb162.hw01.impl.displays.Display;
+
+public class DisplayImplementation implements Display {
     private int size;
 
     private DisplayableCharacter[] characters;
@@ -25,10 +27,9 @@ public class DisplayImplementation implements cz.muni.fi.pb162.hw01.impl.display
 
     @Override
     public void set(int pos, String text) {
-        for (int i = pos; i - pos < text.length(); i++){
-            if (!inRange(i)) {
-                break;
-            }
+        int start = Math.min(pos, size - 1);
+        int end = Math.min(pos + text.length(), size);
+        for (int i = start; i < end; i++){
             characters[i] = DisplayableCharacter.getChar(text.charAt(i - pos));
         }
         for (int i = pos + text.length(); i < size; i++){
